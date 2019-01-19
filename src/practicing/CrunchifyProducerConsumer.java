@@ -21,7 +21,7 @@ public class CrunchifyProducerConsumer {
 		public void run() {
 			for (;;) {
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(1);
 					System.out.println("Object Consumed ################");
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,14 +45,16 @@ public class CrunchifyProducerConsumer {
 		public void run() {
 			for (;;) {
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(1);
 					System.out.println("Object Produced ~~~~~~~~~~~~~~~");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				synchronized (data) {
 				data.add(new Object());
 				if (data.size() > 1000)
 					data.remove(data.size() - 1);
+				}
 			}
 		}
 	}
