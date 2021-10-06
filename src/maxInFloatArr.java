@@ -8,8 +8,7 @@ public class maxInFloatArr {
 	float[] arr2 = new float[] { Float.NaN, Float.NEGATIVE_INFINITY, 0.7f};
 	float[] arr3 = new float[] { Float.NaN, Float.POSITIVE_INFINITY, 0.7f};
 	
-	maxInFloatArr 
-	
+
 	@Test
 	public void test() {
 		

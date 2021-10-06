@@ -36,7 +36,7 @@ public class Main {
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         for(int i=1;i<=numRows;i++){
-            List<Integer> localRow = new List<Integer>();
+            List<Integer> localRow = new ArrayList<Integer>();
             
         }
         return result;

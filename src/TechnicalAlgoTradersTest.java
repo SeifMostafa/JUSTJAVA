@@ -1,8 +1,7 @@
-import static org.junit.Assert.*;
-
+import A.TechnicalAlgoTraders;
 import org.junit.Test;
 
-import A.TechnicalAlgoTraders;
+import static org.junit.Assert.assertEquals;
 
 public class TechnicalAlgoTradersTest {
 
