@@ -1,27 +1,57 @@
 package hackerRank;
 
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.stream.IntStream;
 
 public class BiggerIsGreater {
 
-	public static void main(String[] args) {
-		String w="abaccc";
-		System.out.println(biggerIsGreater(w));
+	public static void main(String[] args) throws IOException {
+		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+
+		int T = Integer.parseInt(bufferedReader.readLine().trim());
+
+		IntStream.range(0, T).forEach(TItr -> {
+			try {
+				String w = bufferedReader.readLine();
+
+				String result = BiggerIsGreater.biggerIsGreater(w);
+
+				bufferedWriter.write(result);
+				bufferedWriter.newLine();
+			} catch (IOException ex) {
+				throw new RuntimeException(ex);
+			}
+		});
+
+		bufferedReader.close();
+		bufferedWriter.close();
 	}
+
 	public static String biggerIsGreater(String w) {
 		// Write your code here
-		char[] chars = w.toCharArray();
-		for(int i=w.length()-1;i>0;i--) {
-			for (int j=i-1;j>=0;j--) {
-				if (w.charAt(i) > w.charAt(j)) {
-					chars[i] = chars[j];
-					chars[j] = w.charAt(i);
-					char [] chars1 = Arrays.copyOfRange(chars,j+1,chars.length);
-					Arrays.sort(chars1);
-					return String.valueOf(Arrays.copyOfRange(chars,0,j+1)) +String.valueOf(chars1);
-				}
+		int i = w.length() - 1;
+		char pivot = '$';
+		while (i > 0) {
+			if (w.charAt(i) > w.charAt(i - 1)) {
+				pivot = w.charAt(i - 1);
+				break;
 			}
+			i--;
 		}
-		return "no answer";
+		if (pivot == '$')
+			return "no answer";
+		char smallest = '~';
+		for (int j = i ; j < w.length(); j++) {
+			if (w.charAt(j) - pivot < smallest - pivot && w.charAt(j)>pivot)
+				smallest = w.charAt(j);
+		}
+		String rev = new StringBuilder(w.substring(i)).reverse().toString().replaceFirst("" + smallest, "" + pivot);
+		return w.substring(0, i - 1) + smallest + rev;
+
 	}
 }
